@@ -32,16 +32,14 @@ You may find more details about ARI in [Adapter Remoting Infrastructure Network 
 ### Dig the Code
 
 #### The Python Data Adapter
-The code example is structured as follows:
-* The `helloworld.py` file, which is the entry point of the example.
+All the required Python code is provided by the `helloworld.py` module.
 
-First, we import the classes included in the lightstreamer-adapter packages, required to the communicate with the Proxy Adapters:
+First, we import the classes included in the `lightstreamer-adapter` subpackages, required to the communicate with the Proxy Adapters:
 
 ```python
 from lightstreamer_adapter.interfaces.data import DataProvider
 from lightstreamer_adapter.server import DataProviderServer
 ```
-Then, we define a Thread to generate the "greetings" events to be send to the Proxy Adapter.
 
 The *HelloWorldDataAdapter* extends *DataProvider* abstract class, which is a Python equivalent of the Java DataProvider interface, 
 provided by the Lightstreamer SDK for Python Adapters: 
@@ -84,8 +82,7 @@ class HelloWorldDataAdapter(DataProvider):
     def issnapshot_available(self, item_name):
         return False
 ```
-The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `greetings` thread is
-started and starts to generate the real-time data. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `greetings` is paused and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
+The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `greetings` thread is started and begins to generate the real-time data. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
 
 The final part of the script initializes and activates the communication with the Proxy Adapters:
 
@@ -100,7 +97,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-First, we create and start the *GreetingThread*. Then, we instantiate the *HelloWordDataAdaper*, passing the handle to the GreetingsThread. After that, we create a *DataProviderServer* instance (which is the PHP equivalent of the Java DataProviderServer and extends the Server abstract class defined above) and assign the HelloWorldAdapter instance to it.
+First, we create and start the *GreetingThread*. First, we instantiate the *HelloWordDataAdaper*, passing the handle to the GreetingsThread. After that, we create a *DataProviderServer* instance (which is the Python equivalent of the Java DataProviderServer and extends the Server abstract class defined above) and assign the HelloWorldAdapter instance to it.
 Since the Proxy Data Adapter to which our remote PHP Adapter will connect needs two connections, we create and setup the StarterServer with two different TPC ports (6661 and 6662 as configured in the beginning ) in order to make it create two stream sockets. Finally, we start DataProviderServer.
 
 #### The Adapter Set Configuration
