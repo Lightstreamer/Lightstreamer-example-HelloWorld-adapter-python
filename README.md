@@ -82,7 +82,7 @@ class HelloWorldDataAdapter(DataProvider):
             self.listener.update('greetings', events, False)
             time.sleep(random.uniform(1, 2))        
 ```
-The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `Greetings` thread is started and begins to generate the real-time data, as specified in it's target `generate_greetings` method. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `Greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
+The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `Greetings` thread is started and begins to generate the real-time data, as specified in its target `generate_greetings` method. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `Greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
 
 The final part of the script initializes and activates the communication with the Proxy Adapters:
 
