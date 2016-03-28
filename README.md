@@ -137,11 +137,6 @@ If you want to install a version of this demo in your local Lightstreamer Server
 * Plug the Proxy Data Adapter into the Server: go to the `Deployment_LS` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder of your Lightstreamer Server installation.
 * Alternatively, you may plug the *robust* versions of the Proxy Data Adapter: go to the `Deployment_LS(robust)` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder.
 * Install the `Lightstreamer SDK for Python Adapter` package, by launching the command:
-
-    ```sh
-    $ pip install -pre lightstreamer-adapter
-    ```
-        
 * Download the `helloworld.py` file from this project.
 * Launch Lightstreamer Server. The Server startup will complete only after a successful connection between the Proxy Data Adapter and the Remote Data Adapter.
 * Launch the Python Remote Adapter, through the command:
