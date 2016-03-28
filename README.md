@@ -135,15 +135,22 @@ You can easily expand your configurations using the generic template, `DOCS-SDKs
 ## Install
 If you want to install a version of this demo in your local Lightstreamer Server, follow these steps:
 * Download *Lightstreamer Server* (Lightstreamer Server comes with a free non-expiring demo license for 20 connected users) from [Lightstreamer Download page](http://www.lightstreamer.com/download.htm), and install it, as explained in the `GETTING_STARTED.TXT` file in the installation home directory.
-* Get the `deploy.zip` file installed from [releases](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-php/releases) and unzip it, obtaining the `deployment` folder.
+* Get the `deploy.zip` file installed from [releases](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-python/releases) and unzip it, obtaining the `deployment` folder.
 * Plug the Proxy Data Adapter into the Server: go to the `Deployment_LS` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder of your Lightstreamer Server installation.
 * Alternatively, you may plug the *robust* versions of the Proxy Data Adapter: go to the `Deployment_LS(robust)` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder.
-* Install the `lightstreamer-adapter` Python package, by launching the command:<BR/>
-`> pip install -pre lightstreamer-adapter`<BR/>
+* Install the `Lightstreamer SDK for Python Adapter` package, by launching the command:
+
+    ```sh
+    $ pip install -pre lightstreamer-adapter
+    ```
+        
 * Download the `helloworld.py` file from this project
 * Launch Lightstreamer Server. The Server startup will complete only after a successful connection between the Proxy Data Adapter and the Remote Data Adapter.
-* Launch the Python Remote Adapter, through the command:<BR/>
-`> python helloworld.py`<BR/>
+* Launch the Python Remote Adapter, through the command:
+
+    ```sh
+    $ python helloworld.py
+    ```
 * Test the Adapter, launching the ["Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) listed in [Clients Using This Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-php#clients-using-this-adapter).
     * To make the ["Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) front-end pages get data from the newly installed Adapter Set, you need to modify the front-end pages and set the required Adapter Set name to PHP_HELLOWORLD, when creating the LightstreamerClient instance. So edit the `index.html` page of the Hello World front-end, deployed under `Lightstreamer/pages/HelloWorld`, and replace:<BR/>
 `var client = new LightstreamerClient(null, "HELLOWORLD");`<BR/>
@@ -153,7 +160,7 @@ with:<BR/>
 
 ## See Also
 
-* [Lightstreamer SKD for Python Adapters](https://github.com/Lightstreamer/Lightstreamer-lib-python-adapter)
+* [Lightstreamer SDK for Python Adapters](https://github.com/Lightstreamer/Lightstreamer-lib-python-adapter)
 
 ### Clients Using This Adapter
 <!-- START RELATED_ENTRIES -->
