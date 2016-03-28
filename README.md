@@ -156,7 +156,6 @@ If you want to install a version of this demo in your local Lightstreamer Server
         ```javascript
         var client = new LightstreamerClient(null, "PYTHON_HELLOWORLD");
         ```
-    
     * Open a browser window and go to: [http://localhost:8080/HelloWorld/]()
 
 ## See Also
