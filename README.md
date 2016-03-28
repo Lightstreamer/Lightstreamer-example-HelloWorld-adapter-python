@@ -29,7 +29,6 @@ You may find more details about ARI in [Adapter Remoting Infrastructure Network 
 
 <!-- END DESCRIPTION lightstreamer-example-helloworld-adapter-php -->
 
-<!--
 ### Dig the Code
 
 #### The Python Data Adapter
@@ -56,23 +55,13 @@ class HelloWorldDataAdapter(DataProvider):
     def initialize(self, parameters, config_file=None):
         pass
 
-    def run(self):
-        random.seed()
-        counter = 0
-        while not self.executing.is_set():
-            events = {'message': 'Hello' if counter % 2 == 0 else 'World',
-                      'timestamp': time.strftime('%a, %d %b %Y %H:%I:%M:%S')}
-            counter += 1
-            self.listener.update('greetings', events, False)
-            time.sleep(random.uniform(1, 2))
-
     def set_listener(self, event_listener):
         self.listener = event_listener
 
     def subscribe(self, item_name):
         if item_name == 'greetings':
-            self.greetings = threading.Thread(target=self.run,
-                                              name='greetings')
+            self.greetings = threading.Thread(target=self.generate_greetings,
+                                              name='Greetings')
             self.greetings.start()
 
     def unsubscribe(self, item_name):
@@ -82,8 +71,18 @@ class HelloWorldDataAdapter(DataProvider):
 
     def issnapshot_available(self, item_name):
         return False
+        
+    def generate_greetings(self):
+        random.seed()
+        counter = 0
+        while not self.executing.is_set():
+            events = {'message': 'Hello' if counter % 2 == 0 else 'World',
+                      'timestamp': time.strftime('%a, %d %b %Y %H:%I:%M:%S')}
+            counter += 1
+            self.listener.update('greetings', events, False)
+            time.sleep(random.uniform(1, 2))        
 ```
-The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `greetings` thread is started and begins to generate the real-time data. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
+The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `Greetings` thread is started and begins to generate the real-time data, as specified in it's target `generate_greetings` method. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `Greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
 
 The final part of the script initializes and activates the communication with the Proxy Adapters:
 
@@ -98,9 +97,9 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-First, we create and start the *GreetingThread*. First, we instantiate the *HelloWordDataAdaper*, passing the handle to the GreetingsThread. After that, we create a *DataProviderServer* instance (which is the Python equivalent of the Java DataProviderServer and extends the Server abstract class defined above) and assign the HelloWorldAdapter instance to it.
-Since the Proxy Data Adapter to which our remote PHP Adapter will connect needs two connections, we create and setup the StarterServer with two different TPC ports (6661 and 6662 as configured in the beginning ) in order to make it create two stream sockets. Finally, we start DataProviderServer.
--->
+First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports of the Proxy Data Adapter. After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+Finally, we start the DataProviderServer instance.
+
 #### The Adapter Set Configuration
 
 This Adapter Set is configured and will be referenced by the clients as `PYTHON_HELLOWORLD`.
