@@ -153,6 +153,7 @@ If you want to install a version of this demo in your local Lightstreamer Server
         var client = new LightstreamerClient(null, "HELLOWORLD");
         ```
         with:
+        
         ```javascript
         var client = new LightstreamerClient(null, "PYTHON_HELLOWORLD");
         ```
