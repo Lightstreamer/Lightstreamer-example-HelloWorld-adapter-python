@@ -3,7 +3,7 @@
 
 The "Hello World" Tutorial is a very basic example, based on Lightstreamer, where we push the alternated strings "Hello" and "World", followed by the current timestamp, from the server to the browser.
 
-This project, of the "Hello World with Lightstreamer" series, will focus on a [PHP](http://www.php.net/) port of the Java Adapter illustrated in [Lightstreamer - "Hello World" Tutorial - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-java).
+This project, of the "Hello World with Lightstreamer" series, will focus on a [Python](https://www.python.org) port of the Java Adapter illustrated in [Lightstreamer - "Hello World" Tutorial - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-java).
 
 As an example of [Clients Using This Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-php#clients-using-this-adapter), you may refer to the [Lightstreamer - "Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) and view the corresponding [Live Demo](http://demos.lightstreamer.com/HelloWorld/).
 
