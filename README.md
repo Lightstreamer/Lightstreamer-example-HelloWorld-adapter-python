@@ -29,6 +29,7 @@ You may find more details about ARI in [Adapter Remoting Infrastructure Network 
 
 <!-- END DESCRIPTION lightstreamer-example-helloworld-adapter-php -->
 
+<!--
 ### Dig the Code
 
 #### The Python Data Adapter
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 ```
 First, we create and start the *GreetingThread*. First, we instantiate the *HelloWordDataAdaper*, passing the handle to the GreetingsThread. After that, we create a *DataProviderServer* instance (which is the Python equivalent of the Java DataProviderServer and extends the Server abstract class defined above) and assign the HelloWorldAdapter instance to it.
 Since the Proxy Data Adapter to which our remote PHP Adapter will connect needs two connections, we create and setup the StarterServer with two different TPC ports (6661 and 6662 as configured in the beginning ) in order to make it create two stream sockets. Finally, we start DataProviderServer.
-
+-->
 #### The Adapter Set Configuration
 
 This Adapter Set is configured and will be referenced by the clients as `PYTHON_HELLOWORLD`.
