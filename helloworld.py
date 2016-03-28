@@ -38,22 +38,6 @@ class HelloWorldDataAdapter(DataProvider):
         # Not needed
         pass
 
-    def run(self):
-        """Target method of the 'Greetings' Thread."""
-        random.seed()
-        counter = 0
-        while not self.executing.is_set():
-            # Prepares the events dictionary
-            events = {"message": 'Hello' if counter % 2 == 0 else 'World',
-                      "timestamp": time.strftime("%a, %d %b %Y %H:%I:%M:%S")}
-            counter += 1
-
-            # Sends updates to the Lightstreamer Server
-            self.listener.update("greetings", events, False)
-
-            # Randomly generated pause
-            time.sleep(random.uniform(1, 2))
-
     def set_listener(self, event_listener):
         """Caches the reference to the provided ItemEventListener instance."""
         self.listener = event_listener
@@ -61,8 +45,8 @@ class HelloWorldDataAdapter(DataProvider):
     def subscribe(self, item_name):
         """Invoked to request data for the item_name item."""
         if item_name == "greetings":
-            self.greetings = threading.Thread(target=self.run,
-                                              name="greetings")
+            self.greetings = threading.Thread(target=self.generate_greetings,
+                                              name="Greetings")
             self.greetings.start()
 
     def unsubscribe(self, item_name):
@@ -77,6 +61,22 @@ class HelloWorldDataAdapter(DataProvider):
         """
         # No snapshot available
         return False
+
+    def generate_greetings(self):
+        """Target method of the 'Greetings' Thread."""
+        random.seed()
+        counter = 0
+        while not self.executing.is_set():
+            # Prepares the events dictionary
+            events = {"message": 'Hello' if counter % 2 == 0 else 'World',
+                      "timestamp": time.strftime("%a, %d %b %Y %H:%I:%M:%S")}
+            counter += 1
+
+            # Sends updates to the Lightstreamer Server
+            self.listener.update("greetings", events, False)
+
+            # Randomly generated pause
+            time.sleep(random.uniform(1, 2))
 
 
 def main():
