@@ -69,7 +69,7 @@ class HelloWorldDataAdapter(DataProvider):
         while not self.executing.is_set():
             # Prepares the events dictionary
             events = {"message": 'Hello' if counter % 2 == 0 else 'World',
-                      "timestamp": time.strftime("%a, %d %b %Y %H:%I:%M:%S")}
+                      "timestamp": time.strftime("%a, %d %b %Y %H:%M:%S")}
             counter += 1
 
             # Sends updates to the Lightstreamer Server
