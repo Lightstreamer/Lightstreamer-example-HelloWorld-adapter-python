@@ -10,7 +10,7 @@ from lightstreamer_adapter.interfaces.data import DataProvider
 from lightstreamer_adapter.server import DataProviderServer
 
 __author__ = "Lightstreamer Srl"
-__copyright__ = "Copyright 2016"
+__copyright__ = "Copyright"
 __credits__ = ["Lightstreamer Srl"]
 __license__ = "Apache Licence 2.0"
 __version__ = "1.0.0"
