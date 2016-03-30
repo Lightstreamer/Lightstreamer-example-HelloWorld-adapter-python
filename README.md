@@ -5,7 +5,7 @@ The "Hello World" Tutorial is a very basic example, based on Lightstreamer, wher
 
 This project, of the "Hello World with Lightstreamer" series, will focus on a [Python](https://www.python.org) port of the Java Adapter illustrated in [Lightstreamer - "Hello World" Tutorial - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-java).
 
-As an example of [Clients Using This Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-php#clients-using-this-adapter), you may refer to the [Lightstreamer - "Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) and view the corresponding [Live Demo](http://demos.lightstreamer.com/HelloWorld/).
+As an example of [Clients Using This Adapter](#clients-using-this-adapter), you may refer to the [Lightstreamer - "Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) and view the corresponding [Live Demo](http://demos.lightstreamer.com/HelloWorld/).
 
 ## Details
 
@@ -27,7 +27,7 @@ So the Proxy Data Adapter converts from a Java interface to TCP sockets, and the
 
 You may find more details about ARI in [Adapter Remoting Infrastructure Network Protocol Specification](http://www.lightstreamer.com/docs/adapter_generic_base/ARI%20Protocol.pdf).
 
-<!-- END DESCRIPTION lightstreamer-example-helloworld-adapter-php -->
+<!-- END DESCRIPTION lightstreamer-example-helloworld-adapter-python -->
 
 ### Dig the Code
 
@@ -138,7 +138,7 @@ If you want to install a version of this demo in your local Lightstreamer Server
 * Install the `Lightstreamer SDK for Python Adapter` package, by launching the command:
 
     ```sh
-    $ pip install -pre lightstreamer-adapter
+    $ pip install --pre lightstreamer-adapter
     ```
 * Download the `helloworld.py` file from this project.        
 * Launch Lightstreamer Server. The Server startup will complete only after a successful connection between the Proxy Data Adapter and the Remote Data Adapter.
@@ -147,7 +147,7 @@ If you want to install a version of this demo in your local Lightstreamer Server
     ```sh
     $ python helloworld.py
     ```
-* Test the Adapter, launching the ["Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) listed in [Clients Using This Adapter](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-php#clients-using-this-adapter).
+* Test the Adapter, launching the ["Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) listed in [Clients Using This Adapter](#clients-using-this-adapter).
     * To make the ["Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript) front-end pages get data from the newly installed Adapter Set, you need to modify the front-end pages and set the required Adapter Set name to `PYTHON_HELLOWORLD`, when creating the LightstreamerClient instance. So edit the `index.html` page of the Hello World front-end, deployed under `Lightstreamer/pages/HelloWorld`, and replace:
         ```javascript
         var client = new LightstreamerClient(null, "HELLOWORLD");
