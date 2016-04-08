@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-'''A very basic are very basic example of Adapter Set where we push the
-alternated strings "Hello" and "World", by the current timestamp, from the
-server to the browser.
-'''
+"""A very basic example of Adapter Set where we push the alternated strings
+"Hello" and "World", by the current timestamp, from the server to the browser.
+"""
 import threading
 import time
 import random
@@ -80,7 +79,7 @@ class HelloWorldDataAdapter(DataProvider):
 
 
 def main():
-    '''Module Entry Point'''
+    """Module Entry Point."""
 
     # Host, request reply port and notify port of the Proxy Adapter
     address = ("localhost", 6661, 6662)
