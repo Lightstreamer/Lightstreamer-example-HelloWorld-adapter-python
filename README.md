@@ -88,7 +88,7 @@ The final part of the script initializes and activates the communication with th
 
 ```python
 def main():
-    address = ("localhost", 6661, 6662)
+    address = ("localhost", 6663, 6664)
     data_adapter = HelloWorldDataAdapter()
     dataprovider_server = DataProviderServer(data_adapter, address)
     dataprovider_server.start()
