@@ -82,7 +82,7 @@ def main():
     """Module Entry Point."""
 
     # Host, request reply port and notify port of the Proxy Adapter
-    address = ("localhost", 6661, 6662)
+    address = ("localhost", 6663, 6664)
 
     # Creates a new instance of the Remote Data Adapter
     data_adapter = HelloWorldDataAdapter()
