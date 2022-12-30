@@ -9,7 +9,7 @@ As an example of [Clients Using This Adapter](#clients-using-this-adapter), you 
 
 ## Details
 
-First, please take a look at the previous installment [Lightstreamer - "Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript), which provides some background and the general description of the application. Notice that the front-end will be exactly the same. We created a very simple HTML page that subscribes to the "greetings" item, using the "HELLOWORLD" Adapter. Now, we will replace the "HELLOWORLD" Adapter implementation based on Java with a Python equivalent. On the client side, nothing will change, as server-side Adapters can be transparently switched and changed, as long as they respect the same interfaces. Thanks to this decoupling, provided by Lightstreamer Server, we could even do something different. For example, we could keep the Java Adapter on the server side and use Flex, instead of HTML, on the client side. Or, we could use the Python Adapter on the server side and use Java, instead of HMTL or Flex, on the client side. Basically, all the combinations of languages and technologies on the client side and on the server side are supported.
+First, please take a look at the previous installment [Lightstreamer - "Hello World" Tutorial - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-client-javascript), which provides some background and the general description of the application. Notice that the front-end will be exactly the same. We created a very simple HTML page that subscribes to the "greetings" item, using the "HELLOWORLD" Adapter. Now, we will replace the "HELLOWORLD" Adapter implementation based on Java with a Python equivalent. On the client side, nothing will change, as server-side Adapters can be transparently switched and changed, as long as they respect the same interfaces. Thanks to this decoupling, provided by Lightstreamer Server, we could even do something different. For example, we could keep the Java Adapter on the server side and use C# .net, instead of HTML, on the client side. Or, we could use the Python Adapter on the server side and use Java, instead of HMTL, on the client side. Basically, all the combinations of languages and technologies on the client side and on the server side are supported.
 
 Please refer to [General Concepts](https://lightstreamer.com/docs/ls-server/latest/General%20Concepts.pdf) for more details about Lightstreamer Adapters.
 
@@ -34,7 +34,7 @@ You may find more details about ARI in [Adapter Remoting Infrastructure Network 
 #### The Python Data Adapter
 All the required Python code is provided by the `helloworld.py` module.
 
-First, we import the classes included in the `lightstreamer-adapter` subpackages, required to the communicate with the Proxy Adapters:
+First, we import the classes included in the `lightstreamer-adapter` subpackages, required to communicate with the Proxy Adapters:
 
 ```python
 from lightstreamer_adapter.interfaces.data import DataProvider
@@ -59,28 +59,28 @@ class HelloWorldDataAdapter(DataProvider):
         self.listener = event_listener
 
     def subscribe(self, item_name):
-        if item_name == 'greetings':
+        if item_name == "greetings":
             self.greetings = threading.Thread(target=self.generate_greetings,
-                                              name='Greetings')
+                                              name="Greetings")
             self.greetings.start()
 
     def unsubscribe(self, item_name):
-        if item_name == 'greetings':
+        if item_name == "greetings":
             self.executing.clear()
             self.greetings.join()
 
     def issnapshot_available(self, item_name):
         return False
-        
+
     def generate_greetings(self):
         random.seed()
         counter = 0
         while not self.executing.is_set():
-            events = {'message': 'Hello' if counter % 2 == 0 else 'World',
-                      'timestamp': time.strftime('%a, %d %b %Y %H:%I:%M:%S')}
+            events = {"message": 'Hello' if counter % 2 == 0 else 'World',
+                      "timestamp": time.strftime("%a, %d %b %Y %H:%M:%S")}
             counter += 1
-            self.listener.update('greetings', events, False)
-            time.sleep(random.uniform(1, 2))        
+            self.listener.update("greetings", events, False)
+            time.sleep(random.uniform(1, 2))
 ```
 The Adapter's subscribe method is invoked when a new item is subscribed for the first time. When the "greetings" item is subscribed by the first user, the `Greetings` thread is started and begins to generate the real-time data, as specified in its target `generate_greetings` method. If more users subscribe to the "greetings" item, the subscribe method is no longer invoked. When the last user unsubscribes from this item, the Adapter is notified through the unsubscribe invocation. In this case, the `Greetings` thread is terminated  and no more events are published  for that item. If a new user re-subscribes to "greetings", the subscribe method is invoked again ad the process resumes the same way.
 
@@ -97,7 +97,8 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports of the Proxy Data Adapter. After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below). After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+
 Finally, we start the DataProviderServer instance.
 
 #### The Adapter Set Configuration
