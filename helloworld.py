@@ -6,6 +6,7 @@ import threading
 import time
 import random
 import os
+import traceback
 from lightstreamer_adapter.interfaces.data import DataProvider
 from lightstreamer_adapter.server import DataProviderServer
 
@@ -94,7 +95,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        traceback.print_exc()
+        os._exit(0)
 
     while True:
         try:

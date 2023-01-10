@@ -95,7 +95,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
 ```
 First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below). After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
 
