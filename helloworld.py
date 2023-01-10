@@ -5,6 +5,7 @@
 import threading
 import time
 import random
+import os
 from lightstreamer_adapter.interfaces.data import DataProvider
 from lightstreamer_adapter.server import DataProviderServer
 
@@ -94,3 +95,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    while True:
+        try:
+            input()
+        except EOFError:
+            break
+        except KeyboardInterrupt:
+            break
+
+    os._exit(0)
