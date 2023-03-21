@@ -101,12 +101,7 @@ if __name__ == "__main__":
         traceback.print_exc()
         os._exit(0)
 
-    while True:
-        try:
-            input()
-        except EOFError:
-            break
-        except KeyboardInterrupt:
-            break
-
-    os._exit(0)
+    # after calling dataprovider_server.start()
+    # we have to keep the main thread active in some way (see the docs)
+    shutdown_event = threading.Event()
+    shutdown_event.wait()
