@@ -99,7 +99,9 @@ if __name__ == "__main__":
     shutdown_event = threading.Event()
     shutdown_event.wait()
 ```
-First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below). After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below).
+In fact, the use of two ports to communicate with a Data Adapter is required for Servers earlier than 7.4, then it is supported for backward compatibility.
+After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
 
 Finally, we start the DataProviderServer instance and ensure that the main thread stays alive (the latter is needed, since Python 3.9, to allow the SDK library to take advantage of the system's ThreadPoolExecutor class).
 
