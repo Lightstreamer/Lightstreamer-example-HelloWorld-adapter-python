@@ -99,9 +99,7 @@ if __name__ == "__main__":
     shutdown_event = threading.Event()
     shutdown_event.wait()
 ```
-First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below).
-In fact, the use of two ports to communicate with a Data Adapter is required for Servers earlier than 7.4, then it is supported for backward compatibility.
-After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below). After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
 
 Finally, we start the DataProviderServer instance and ensure that the main thread stays alive (the latter is needed, since Python 3.9, to allow the SDK library to take advantage of the system's ThreadPoolExecutor class).
 
@@ -109,7 +107,7 @@ Finally, we start the DataProviderServer instance and ensure that the main threa
 
 This Adapter Set is configured and will be referenced by the clients as `PYTHON_HELLOWORLD`.
 For this demo, we configure just the Data Adapter as a *Proxy Data Adapter*, while instead, as Metadata Adapter, we use the [LiteralBasedProvider](https://github.com/Lightstreamer/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, already provided by Lightstreamer server.
-As *Proxy Data Adapter*, you may configure also the robust versions. The *Robust Proxy Data Adapter* has some recovery capabilities and avoid to terminate the Lightstreamer Server process, so it can handle the case in which a Remote Data Adapter is missing or fails, by suspending the data flow and trying to connect to a new Remote Data Adapter instance. Full details on the recovery behavior of the Robust Data Adapter are available as inline comments within the [provided template](https://lightstreamer.com/docs/ls-server/latest_7_3/remote_adapter_robust_conf_template/adapters.xml).
+As *Proxy Data Adapter*, you may configure also the robust versions. The *Robust Proxy Data Adapter* has some recovery capabilities and avoid to terminate the Lightstreamer Server process, so it can handle the case in which a Remote Data Adapter is missing or fails, by suspending the data flow and trying to connect to a new Remote Data Adapter instance. Full details on the recovery behavior of the Robust Data Adapter are available as inline comments within the [provided template](https://lightstreamer.com/docs/ls-server/latest/remote_adapter_robust_conf_template/adapters.xml).
 
 The `adapters.xml` file for this demo should look like:
 ```xml
@@ -133,12 +131,12 @@ The `adapters.xml` file for this demo should look like:
 
 <i>NOTE: not all configuration options of a Proxy Adapter are exposed by the file suggested above.<br>
 You can easily expand your configurations using the generic template
-for [basic](https://lightstreamer.com/docs/ls-server/latest_7_3/remote_adapter_conf_template/adapters.xml) and [robust](https://lightstreamer.com/docs/ls-server/latest_7_3/remote_adapter_robust_conf_template/adapters.xml) Proxy Adapters as a reference.</i>
+for [basic](https://lightstreamer.com/docs/ls-server/latest/remote_adapter_conf_template/adapters.xml) and [robust](https://lightstreamer.com/docs/ls-server/latest/remote_adapter_robust_conf_template/adapters.xml) Proxy Adapters as a reference.</i>
 
 ## Install
 If you want to install a version of this demo in your local Lightstreamer Server, follow these steps:
 * Download *Lightstreamer Server* (Lightstreamer Server comes with a free non-expiring demo license for 20 connected users) from [Lightstreamer Download page](http://www.lightstreamer.com/download.htm), and install it, as explained in the `GETTING_STARTED.TXT` file in the installation home directory.
-* Get the `deploy.zip` file of the ["Release for Lightstreamer 7.3" release](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-python/releases) and unzip it, obtaining the `deployment` folder.
+* Get the `deploy.zip` file of the [latest " release](https://github.com/Lightstreamer/Lightstreamer-example-HelloWorld-adapter-python/releases) and unzip it, obtaining the `deployment` folder.
 * Plug the Proxy Data Adapter into the Server: go to the `Deployment_LS` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder of your Lightstreamer Server installation.
 * Alternatively, you may plug the *robust* versions of the Proxy Data Adapter: go to the `Deployment_LS(robust)` folder and copy the `PythonHelloWorld` directory and all of its files into the `adapters` folder.
 * Install the `Lightstreamer SDK for Python Adapter` package, by launching the command:
@@ -183,7 +181,7 @@ If you want to install a version of this demo in your local Lightstreamer Server
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer SDK for Python Adapters 1.0 to 1.2.
+* Compatible with Lightstreamer SDK for Python Adapters since 1.3.
 
 ## Final Notes
 
