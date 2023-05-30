@@ -88,7 +88,7 @@ The final part of the script initializes and activates the communication with th
 
 ```python
 def main():
-    address = ("localhost", 6663, 6664)
+    address = ("localhost", 6663)
     data_adapter = HelloWorldDataAdapter()
     dataprovider_server = DataProviderServer(data_adapter, address)
     dataprovider_server.start()
@@ -99,7 +99,9 @@ if __name__ == "__main__":
     shutdown_event = threading.Event()
     shutdown_event.wait()
 ```
-First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP ports configured for the Proxy Data Adapter (see below). After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
+First, we initialize a tuple with the target address information, which comprise the host of the Lightstreamer Server and the listening TCP port configured for the Proxy Data Adapter (see below).
+Note: The address structure includes two port members, which, however, can be assigned the same value.
+After that, we create a *DataProviderServer* object, passing to it a new *HelloWorldAdapter* instance and the initialized address.
 
 Finally, we start the DataProviderServer instance and ensure that the main thread stays alive (the latter is needed, since Python 3.9, to allow the SDK library to take advantage of the system's ThreadPoolExecutor class).
 
@@ -123,7 +125,6 @@ The `adapters.xml` file for this demo should look like:
     <adapter_class>PROXY_FOR_REMOTE_ADAPTER</adapter_class>
     <classloader>log-enabled</classloader>
     <param name="request_reply_port">6663</param>
-    <param name="notify_port">6664</param>
   </data_provider>
  
 </adapters_conf>
@@ -181,7 +182,9 @@ If you want to install a version of this demo in your local Lightstreamer Server
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer SDK for Python Adapters since 1.3.
+* Compatible with Lightstreamer SDK for Python Adapters version 1.3 or newer and Lightstreamer Server version 7.4 or newer.
+- For a version of this example compatible with Lightstreamer Server version since 6.0, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-python/tree/for_Lightstreamer_7.3).
+- For a version of this example compatible with Lightstreamer SDK for Python Adapters version 1.0 to 1.2, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-python/tree/for_Lightstreamer_7.3).
 
 ## Final Notes
 
